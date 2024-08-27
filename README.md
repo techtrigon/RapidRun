@@ -2,7 +2,7 @@
 
 **RapidRun** is a powerful Visual Studio Code extension that allows you to quickly compile and run code in multiple programming languages directly from your IDE. With support for C, C++, Python, JavaScript, Java, C#, and TypeScript, RapidRun enhances your productivity and streamlines your development workflow.
 
-![RapidRun Logo](RapidRun.png)
+![RapidRun Logo](./RapidRun.png)
 
 ## 🚀 Features
 
