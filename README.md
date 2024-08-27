@@ -1,8 +1,6 @@
-# RapidRun 🎯
+## RapidRun 🎯
 
 **RapidRun** is a powerful Visual Studio Code extension that allows you to quickly compile and run code in multiple programming languages directly from your IDE. With support for C, C++, Python, JavaScript, Java, C#, and TypeScript, RapidRun enhances your productivity and streamlines your development workflow.
-
-![RapidRun Logo](./RapidRun.png)
 
 ## 🚀 Features
 
@@ -38,38 +36,20 @@ Configure the compilers and interpreters in your `settings.json` file:
 
 ```json
 {
-  "RapidRun.cCompiler": "gcc",
   "RapidRun.cppCompiler": "g++",
+  "RapidRun.cppFlags": "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -pipe -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable",
   "RapidRun.javaCompiler": "javac",
+  "RapidRun.javaFlags": "",
   "RapidRun.pythonInterpreter": "python",
-  "RapidRun.csharpCompiler": "dotnet run",
+  "RapidRun.pythonFlags": "",
   "RapidRun.jsRuntime": "node",
+  "RapidRun.jsFlags": "",
   "RapidRun.tsCompiler": "tsc",
-  "RapidRun.cFlags": [
-    "-pipe",
-    "-D_FORTIFY_SOURCE=2",
-    "-D_GLIBCXX_ASSERTIONS",
-    "-Wall",
-    "-Wextra",
-    "-O2",
-    "-flto",
-    "-std=c17"
-  ],
-  "RapidRun.cppFlags": [
-    "-pipe",
-    "-D_FORTIFY_SOURCE=2",
-    "-D_GLIBCXX_ASSERTIONS",
-    "-Wall",
-    "-Wextra",
-    "-O2",
-    "-flto",
-    "-std=c++23"
-  ],
-  "RapidRun.javaFlags": [],
-  "RapidRun.pythonFlags": [],
-  "RapidRun.csharpFlags": [],
-  "RapidRun.jsFlags": [],
-  "RapidRun.tsFlags": []
+  "RapidRun.tsFlags": "",
+  "RapidRun.csharpCompiler": "dotnet run",
+  "RapidRun.csharpFlags": "",
+  "RapidRun.cFlags": "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -pipe -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable",
+  "RapidRun.cCompiler": "gcc",
 }
 ```
 ## 🚀 Usage

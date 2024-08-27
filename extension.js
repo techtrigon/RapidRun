@@ -1,23 +1,25 @@
-// 'use strict';
+'use strict';
 const vscode = require ('vscode');
 const path = require ('path');
 // const punycode = require ('punycode/');
-
-const terminalName = 'Run';
 
 /**
  * Retrieves or creates a terminal with a specific name.
  * @returns {vscode.Terminal} The terminal instance.
  */
 const getTerminal = () => {
-  let terminal = vscode.window.terminals.find (t => t.name === terminalName);
-  return terminal || vscode.window.createTerminal (terminalName);
+  let terminal = vscode.window.activeTerminal;
+  if (!terminal) {
+    terminal = vscode.window.createTerminal ('Code');
+  }
+  return terminal;
 };
 
 /**
  * Retrieve and cache configuration settings.
  * @returns {object} The configuration settings.
  */
+
 const getConfig = (() => {
   let configCache = null;
   return () => {
@@ -50,13 +52,13 @@ const runCode = (filePath, fileName, fileExt) => {
   };
 
   const flags = {
-    '.c': config.get ('cFlags').join (' '),
-    '.cpp': config.get ('cppFlags').join (' '),
-    '.java': config.get ('javaFlags').join (' '),
-    '.py': config.get ('pythonFlags').join (' '),
-    '.cs': config.get ('csharpFlags').join (' '),
-    '.js': config.get ('jsFlags').join (' '),
-    '.ts': config.get ('tsFlags').join (' '),
+    '.c': config.get ('cFlags'),
+    '.cpp': config.get ('cppFlags'),
+    '.java': config.get ('javaFlags'),
+    '.py': config.get ('pythonFlags'),
+    '.cs': config.get ('csharpFlags'),
+    '.js': config.get ('jsFlags'),
+    '.ts': config.get ('tsFlags'),
   };
 
   const compiler = compilers[fileExt];
@@ -94,6 +96,7 @@ const runCode = (filePath, fileName, fileExt) => {
  * Activates the extension.
  * @param {vscode.ExtensionContext} context - The extension context.
  */
+
 const activate = context => {
   //   console.time ('Extension Startup Time');
   const runButton = vscode.window.createStatusBarItem (
@@ -104,9 +107,9 @@ const activate = context => {
   runButton.command = 'RapidRun.runner';
   runButton.tooltip = 'Run current code';
   runButton.show ();
-  context.subscriptions.push (runButton);
 
   context.subscriptions.push (
+    runButton,
     vscode.commands.registerCommand ('RapidRun.runner', () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {

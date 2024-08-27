@@ -6,9 +6,9 @@
   "icon": "./RapidRun.png",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AbrarShakhi/runccpp-vsce"
+    "url": "https://github.com/techtrigon/RapidRun"
   },
-  "version": "1.0.0",
+  "version": "1.1.0",
   "license": "GNU",
   "keywords": [
     "C",
@@ -42,114 +42,75 @@
       "type": "object",
       "title": "RapidRun Settings",
       "properties": {
-        "RapidRun.cCompiler": {
-          "type": "string",
-          "default": "gcc",
-          "description": "Compiler for C files."
-        },
         "RapidRun.cppCompiler": {
           "type": "string",
           "default": "g++",
           "description": "Compiler for C++ files."
+        },
+        "RapidRun.cppFlags": {
+          "type": "string",
+          "default": "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -pipe -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable",
+          "description": "Flags for C++ compilation."
         },
         "RapidRun.javaCompiler": {
           "type": "string",
           "default": "javac",
           "description": "Compiler for Java files."
         },
+        "RapidRun.javaFlags": {
+          "type": "string",
+          "default": "",
+          "description": "Flags for Java compilation."
+        },
         "RapidRun.pythonInterpreter": {
           "type": "string",
           "default": "python",
           "description": "Interpreter for Python files."
         },
-        "RapidRun.csharpCompiler": {
+        "RapidRun.pythonFlags": {
           "type": "string",
-          "default": "dotnet run",
-          "description": "Command for running C# files."
+          "default": "",
+          "description": "Flags for running Python."
         },
         "RapidRun.jsRuntime": {
           "type": "string",
           "default": "node",
           "description": "Runtime for JavaScript files."
         },
+        "RapidRun.jsFlags": {
+          "type": "string",
+          "default": "",
+          "description": "Flags for running JavaScript."
+        },
         "RapidRun.tsCompiler": {
           "type": "string",
           "default": "tsc",
           "description": "Compiler for TypeScript files."
         },
-        "RapidRun.cFlags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [
-            "-pipe",
-            "-D_FORTIFY_SOURCE=2",
-            "-D_GLIBCXX_ASSERTIONS",
-            "-Wall",
-            "-Wextra",
-            "-O2",
-            "-flto",
-            "-std=c17"
-          ],
-          "description": "Flags for C compilation."
+        "RapidRun.tsFlags": {
+          "type": "string",
+          "default": "",
+          "description": "Flags for running TypeScript."
         },
-        "RapidRun.cppFlags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [
-            "-pipe",
-            "-D_FORTIFY_SOURCE=2",
-            "-D_GLIBCXX_ASSERTIONS",
-            "-Wall",
-            "-Wextra",
-            "-O2",
-            "-flto",
-            "-std=c++23"
-          ],
-          "description": "Flags for C++ compilation."
-        },
-        "RapidRun.javaFlags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [ ],
-          "description": "Flags for Java compilation."
-        },
-        "RapidRun.pythonFlags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [ ],
-          "description": "Flags for running Python."
+        "RapidRun.csharpCompiler": {
+          "type": "string",
+          "default": "dotnet run",
+          "description": "Command for running C# files."
         },
         "RapidRun.csharpFlags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [ ],
+          "type": "string",
+          "default": "",
           "description": "Flags for running C#."
         },
-        "RapidRun.jsFlags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [ ],
-          "description": "Flags for running JavaScript."
+        "RapidRun.cCompiler": {
+          "type": "string",
+          "default": "gcc",
+          "description": "Compiler for C files."
         },
-        "RapidRun.tsFlags": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": [ ],
-          "description": "Flags for running TypeScript."
+        "RapidRun.cFlags": {
+          "type": "string",
+          "default": "-pipe -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -Wall -Wextra -O2 -flto -std=c17",
+          "description": "Flags for C compilation."
         }
       }
     }
