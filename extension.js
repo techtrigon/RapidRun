@@ -36,6 +36,20 @@ const updateConfigCache = () => {
 };
 
 /**
+ * Saves files based on the configured option.
+ */
+const saveFiles = async () => {
+  const config = getConfig ();
+  const saveOption = config.get ('saveBeforeRun');
+
+  if (saveOption === 'single') {
+    await vscode.commands.executeCommand ('workbench.action.files.save');
+  } else if (saveOption === 'all') {
+    await vscode.commands.executeCommand ('workbench.action.files.saveAll');
+  }
+};
+
+/**
  * Compiles and runs the code based on the file extension.
  * @param {string} filePath - The full path of the file.
  * @param {string} fileName - The name of the file without the extension.
@@ -59,8 +73,8 @@ const runCode = (filePath, fileName, fileExt, config) => {
     '.java': config.get ('javaFlags'),
     '.py': config.get ('pythonFlags'),
     '.cs': config.get ('csharpFlags'),
-    '.js': config.get ('jsFlags'),
-    '.ts': config.get ('tsFlags'),
+    '.js': config.get ('javascriptFlags'),
+    '.ts': config.get ('typescriptFlags'),
   };
 
   const compiler = compilers[fileExt];
@@ -94,13 +108,10 @@ const runCode = (filePath, fileName, fileExt, config) => {
 
 /**
  * Activates the extension.
- * @param {vscode.ExtensionContext} context - The extension context.
+ * @param {vscode.ExtensionContext} context
  */
 const activate = context => {
-  // Initial cache setup
   updateConfigCache ();
-
-  // Listen for configuration changes
   vscode.workspace.onDidChangeConfiguration (event => {
     if (event.affectsConfiguration ('RapidRun')) {
       updateConfigCache ();
@@ -110,27 +121,30 @@ const activate = context => {
   // Status bar button
   const runButton = vscode.window.createStatusBarItem (
     vscode.StatusBarAlignment.Left,
-    80
+    0
   );
-  runButton.text = 'Run 🟢';
+  runButton.text = '   Run Code 🟢   ';
   runButton.command = 'RapidRun.runner';
   runButton.tooltip = 'Run current code';
   runButton.show ();
 
   context.subscriptions.push (
     runButton,
-    vscode.commands.registerCommand ('RapidRun.runner', () => {
+    vscode.commands.registerCommand ('RapidRun.runner', async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
         vscode.window.showErrorMessage ('No active editor found.');
         return;
       }
+
       const fileUri = editor.document.uri;
       const fileExt = path.extname (fileUri.fsPath).toLowerCase ();
       const filePath = path.normalize (fileUri.fsPath);
       const fileName = path.basename (fileUri.fsPath, fileExt);
-      const config = getConfig (); // Use the cached config
-      runCode (filePath, fileName, fileExt, config); // Pass config to runCode
+      const config = getConfig ();
+
+      await saveFiles ();
+      runCode (filePath, fileName, fileExt, config);
     })
   );
 };
