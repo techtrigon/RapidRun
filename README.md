@@ -4,10 +4,22 @@
 
 ## 🚀 Features
 
-- **Supports Multiple Languages**: Quickly run code for C, C++, Python, JavaScript, Java, C#, and TypeScript.
-- **Highly Customizable**: Configure compilers and interpreters as per your needs.
-- **Fast Execution**: Compile and run code with a single click or command.
-- **Status Bar Integration**: Easily access the run functionality via the status bar.
+- **Supports Multiple Languages**: Quickly run and compile code for C, C++, Python, JavaScript, Java, C#, and TypeScript.
+
+- **Highly Customizable**: Configure compilers, interpreters, and flags to suit your specific project needs.
+
+- **Fast Execution**: Compile and run your code with a single click or command, optimizing your workflow.
+
+- **Status Bar Integration**: Seamlessly access the run functionality directly from the status bar for quick execution.
+
+- **Smart Save Options**: Automatically save files before running based on your preferences (single, all, or none).
+
+- **Terminal Integration**: View compilation and run outputs directly in the integrated terminal.
+
+- **Error Handling**: Receive instant feedback on compilation errors, making debugging easier.
+
+- **Cross-Platform Support**: Works on Windows, macOS, and Linux, providing a consistent experience across all platforms.
+
 
 ## 💻 Installation
 
@@ -50,6 +62,7 @@ Configure the compilers and interpreters in your `settings.json` file:
   "RapidRun.csharpFlags": "",
   "RapidRun.cFlags": "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -pipe -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable",
   "RapidRun.cCompiler": "gcc",
+  "RapidRun.saveBeforeRun":"single"
 }
 ```
 ## 🚀 Usage
@@ -57,9 +70,9 @@ Configure the compilers and interpreters in your `settings.json` file:
 1.  **Open a Code File**: Ensure the file you want to run is currently open in the editor.
 
 3.  **Run Your Code**:
-    -   Click the `Run 🟢` button in the status bar at the bottom left.
+    -   Click the `   Run Code 🟢   ` button in the status bar at the bottom left or Set keybinding
     -   Or use the command: Press `Ctrl+Shift+P` and search for `RapidRun: Run Code`.
 
 ### Example
 
-If you have a `main.cpp` file open, clicking the `Run 🟢` button or using the command will compile and run your C++ code using the settings you configured.
+If you have a `main.cpp` file open, clicking the `   Run Code 🟢   ` button or using the command will compile and run your C++ code using the settings you configured.
