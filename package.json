@@ -29,7 +29,9 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [ "onStartupFinished" ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
@@ -49,8 +51,8 @@
         },
         "RapidRun.cppFlags": {
           "type": "string",
-          "default": "-D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -pipe -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable",
-          "description": "Flags for C++ compilation."
+          "default": "-pipe -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable",
+          "description": "C++: flags"
         },
         "RapidRun.javaCompiler": {
           "type": "string",
@@ -60,7 +62,7 @@
         "RapidRun.javaFlags": {
           "type": "string",
           "default": "",
-          "description": "Flags for Java compilation."
+          "description": "Java: flags"
         },
         "RapidRun.pythonInterpreter": {
           "type": "string",
@@ -70,7 +72,7 @@
         "RapidRun.pythonFlags": {
           "type": "string",
           "default": "",
-          "description": "Flags for running Python."
+          "description": "Python: flags"
         },
         "RapidRun.jsRuntime": {
           "type": "string",
@@ -80,7 +82,7 @@
         "RapidRun.jsFlags": {
           "type": "string",
           "default": "",
-          "description": "Flags for running JavaScript."
+          "description": "JavaScript: flags"
         },
         "RapidRun.tsCompiler": {
           "type": "string",
@@ -90,7 +92,7 @@
         "RapidRun.tsFlags": {
           "type": "string",
           "default": "",
-          "description": "Flags for running TypeScript."
+          "description": "TypeScript: flags"
         },
         "RapidRun.csharpCompiler": {
           "type": "string",
@@ -100,7 +102,7 @@
         "RapidRun.csharpFlags": {
           "type": "string",
           "default": "",
-          "description": "Flags for running C#."
+          "description": "C#: flags"
         },
         "RapidRun.cCompiler": {
           "type": "string",
@@ -110,7 +112,7 @@
         "RapidRun.cFlags": {
           "type": "string",
           "default": "-pipe -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -Wall -Wextra -O2 -flto -std=c17",
-          "description": "Flags for C compilation."
+          "description": "C: flags"
         }
       }
     }
@@ -122,8 +124,8 @@
   },
   "devDependencies": {
     "@types/vscode": "^1.92.0",
-    "eslint": "^8.57.0",
     "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.0"
+    "@vscode/test-electron": "^2.4.0",
+    "eslint": "^8.57.0"
   }
 }

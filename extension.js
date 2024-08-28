@@ -1,7 +1,6 @@
 'use strict';
 const vscode = require ('vscode');
 const path = require ('path');
-// const punycode = require ('punycode/');
 
 /**
  * Retrieves or creates a terminal with a specific name.
@@ -16,31 +15,34 @@ const getTerminal = () => {
 };
 
 /**
- * Retrieve and cache configuration settings.
- * @returns {object} The configuration settings.
+ * Retrieves or updates configuration settings.
+ * @returns {vscode.WorkspaceConfiguration} The configuration settings.
  */
+let configCache = null;
 
-const getConfig = (() => {
-  let configCache = null;
-  return () => {
-    if (configCache) {
-      return configCache;
-    }
-    configCache = vscode.workspace.getConfiguration ('RapidRun');
+const getConfig = () => {
+  if (configCache) {
     return configCache;
-  };
-}) ();
+  }
+  configCache = vscode.workspace.getConfiguration ('RapidRun');
+  return configCache;
+};
+
+/**
+ * Updates the configuration cache.
+ */
+const updateConfigCache = () => {
+  configCache = vscode.workspace.getConfiguration ('RapidRun');
+};
 
 /**
  * Compiles and runs the code based on the file extension.
  * @param {string} filePath - The full path of the file.
  * @param {string} fileName - The name of the file without the extension.
  * @param {string} fileExt - The file extension.
+ * @param {vscode.WorkspaceConfiguration} config - The configuration settings.
  */
-
-const runCode = (filePath, fileName, fileExt) => {
-  const config = getConfig ();
-
+const runCode = (filePath, fileName, fileExt, config) => {
   const compilers = {
     '.c': config.get ('cCompiler'),
     '.cpp': config.get ('cppCompiler'),
@@ -63,9 +65,7 @@ const runCode = (filePath, fileName, fileExt) => {
 
   const compiler = compilers[fileExt];
   if (!compiler) {
-    vscode.window.showErrorMessage (
-      'File type not supported or no compiler set.'
-    );
+    vscode.window.showErrorMessage ('No compiler set.');
     return;
   }
 
@@ -89,16 +89,25 @@ const runCode = (filePath, fileName, fileExt) => {
 
   const terminal = getTerminal ();
   terminal.show ();
-  terminal.sendText (`cd "${location}" && ${runCommand}`);
+  terminal.sendText (runCommand);
 };
 
 /**
  * Activates the extension.
  * @param {vscode.ExtensionContext} context - The extension context.
  */
-
 const activate = context => {
-  //   console.time ('Extension Startup Time');
+  // Initial cache setup
+  updateConfigCache ();
+
+  // Listen for configuration changes
+  vscode.workspace.onDidChangeConfiguration (event => {
+    if (event.affectsConfiguration ('RapidRun')) {
+      updateConfigCache ();
+    }
+  });
+
+  // Status bar button
   const runButton = vscode.window.createStatusBarItem (
     vscode.StatusBarAlignment.Left,
     80
@@ -120,10 +129,10 @@ const activate = context => {
       const fileExt = path.extname (fileUri.fsPath).toLowerCase ();
       const filePath = path.normalize (fileUri.fsPath);
       const fileName = path.basename (fileUri.fsPath, fileExt);
-      runCode (filePath, fileName, fileExt);
+      const config = getConfig (); // Use the cached config
+      runCode (filePath, fileName, fileExt, config); // Pass config to runCode
     })
   );
-  //   console.timeEnd ('Extension Startup Time');
 };
 
 const deactivate = () => {};
