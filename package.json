@@ -8,20 +8,50 @@
     "type": "git",
     "url": "https://github.com/techtrigon/RapidRun"
   },
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "GNU",
   "keywords": [
     "C",
+    "C++",
+    "C#",
     "run",
-    "Compile",
-    "C plus plus",
-    "C sharp",
-    "java",
-    "python",
-    "javaScript",
-    "typeScript",
-    "c++",
-    "fast"
+    "compile",
+    "build",
+    "execute",
+    "fast",
+    "Java",
+    "Python",
+    "JavaScript",
+    "TypeScript",
+    "automation",
+    "terminal",
+    "code",
+    "development",
+    "programming",
+    "productivity",
+    "multilanguage",
+    "compiler",
+    "interpreter",
+    "IDE",
+    "VSCode",
+    "extensions",
+    "debug",
+    "error handling",
+    "tooling",
+    "code runner",
+    "build tool",
+    "cross-platform",
+    "integration",
+    "coding",
+    "scripting",
+    "workflow",
+    "code execution",
+    "coderunner",
+    "github",
+    "git",
+    "language support",
+    "optimization",
+    "software development"
   ],
   "engines": {
     "vscode": "^1.92.0"
@@ -51,8 +81,7 @@
         },
         "RapidRun.cppFlags": {
           "type": "string",
-          "default": "-pipe -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable",
-          "description": "C++: flags"
+          "default": "-pipe -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -std=c++23 -O2 -flto -Wall -Wextra -Wno-unused-parameter -Wno-unused-variable"
         },
         "RapidRun.javaCompiler": {
           "type": "string",
@@ -61,8 +90,7 @@
         },
         "RapidRun.javaFlags": {
           "type": "string",
-          "default": "",
-          "description": "Java: flags"
+          "default": ""
         },
         "RapidRun.pythonInterpreter": {
           "type": "string",
@@ -71,28 +99,25 @@
         },
         "RapidRun.pythonFlags": {
           "type": "string",
-          "default": "",
-          "description": "Python: flags"
+          "default": ""
         },
         "RapidRun.jsRuntime": {
           "type": "string",
           "default": "node",
           "description": "Runtime for JavaScript files."
         },
-        "RapidRun.jsFlags": {
+        "RapidRun.javascriptFlags": {
           "type": "string",
-          "default": "",
-          "description": "JavaScript: flags"
+          "default": ""
         },
         "RapidRun.tsCompiler": {
           "type": "string",
           "default": "tsc",
           "description": "Compiler for TypeScript files."
         },
-        "RapidRun.tsFlags": {
+        "RapidRun.typescriptFlags": {
           "type": "string",
-          "default": "",
-          "description": "TypeScript: flags"
+          "default": ""
         },
         "RapidRun.csharpCompiler": {
           "type": "string",
@@ -101,8 +126,7 @@
         },
         "RapidRun.csharpFlags": {
           "type": "string",
-          "default": "",
-          "description": "C#: flags"
+          "default": ""
         },
         "RapidRun.cCompiler": {
           "type": "string",
@@ -111,8 +135,13 @@
         },
         "RapidRun.cFlags": {
           "type": "string",
-          "default": "-pipe -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -Wall -Wextra -O2 -flto -std=c17",
-          "description": "C: flags"
+          "default": "-pipe -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS -Wall -Wextra -O2 -flto -std=c17"
+        },
+        "RapidRun.saveBeforeRun": {
+          "type": "string",
+          "default": "single",
+          "enum": [ "single", "all", "none" ],
+          "description": "Specify whether to save the active file, all open files, or none before running the code."
         }
       }
     }
